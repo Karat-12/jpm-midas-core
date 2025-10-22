@@ -1,0 +1,80 @@
+-------------------------------------------------------------------------------
+Test set: com.jpmc.midascore.TaskTwoTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.698 s <<< FAILURE! -- in com.jpmc.midascore.TaskTwoTests
+com.jpmc.midascore.TaskTwoTests.task_two_verifier -- Time elapsed: 0.018 s <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@70fede7d testClass = com.jpmc.midascore.TaskTwoTests, locations = [], classes = [com.jpmc.midascore.MidasCoreApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@723e88f9, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@6ea2bc93, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@1cb346ea, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@a37aefe, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@13b3d178, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@6c61a903, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.kafka.test.context.EmbeddedKafkaContextCustomizer@56284a62, org.springframework.boot.test.context.SpringBootTestAnnotation@6cf3fa6c], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:212)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:194)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:212)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1709)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:556)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:546)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:611)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.RuntimeException: Received a fatal error while waiting for the SocketServer Acceptors to be started.
+	at kafka.server.KafkaServer.startup(KafkaServer.scala:664)
+	at kafka.utils.TestUtils$.createServer(TestUtils.scala:187)
+	at kafka.utils.TestUtils$.createServer(TestUtils.scala:181)
+	at kafka.utils.TestUtils.createServer(TestUtils.scala)
+	at org.springframework.kafka.test.EmbeddedKafkaZKBroker.afterPropertiesSet(EmbeddedKafkaZKBroker.java:318)
+	at org.springframework.kafka.test.EmbeddedKafkaBrokerFactory.create(EmbeddedKafkaBrokerFactory.java:119)
+	at org.springframework.kafka.test.context.EmbeddedKafkaContextCustomizer.customizeContext(EmbeddedKafkaContextCustomizer.java:60)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextCustomizerAdapter.initialize(SpringBootContextLoader.java:453)
+	at org.springframework.boot.SpringApplication.applyInitializers(SpringApplication.java:612)
+	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:383)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:317)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:144)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:563)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	... 19 more
+Caused by: java.util.concurrent.CompletionException: java.lang.RuntimeException: Unable to start acceptor for ListenerName(PLAINTEXT)
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.andTree(CompletableFuture.java:1527)
+	at java.base/java.util.concurrent.CompletableFuture.allOf(CompletableFuture.java:2451)
+	at kafka.network.SocketServer.enableRequestProcessing(SocketServer.scala:238)
+	at kafka.server.KafkaServer.startup(KafkaServer.scala:647)
+	... 38 more
+Caused by: java.lang.RuntimeException: Unable to start acceptor for ListenerName(PLAINTEXT)
+	at kafka.network.Acceptor.liftedTree1$1(SocketServer.scala:647)
+	at kafka.network.Acceptor.start(SocketServer.scala:627)
+	at kafka.network.SocketServer.$anonfun$enableRequestProcessing$2(SocketServer.scala:223)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenCompleteStage(CompletableFuture.java:887)
+	at java.base/java.util.concurrent.CompletableFuture.whenComplete(CompletableFuture.java:2357)
+	at kafka.network.SocketServer.chainAcceptorFuture$1(SocketServer.scala:216)
+	at kafka.network.SocketServer.$anonfun$enableRequestProcessing$5(SocketServer.scala:230)
+	at java.base/java.util.concurrent.ConcurrentHashMap$ValuesView.forEach(ConcurrentHashMap.java:4785)
+	at kafka.network.SocketServer.enableRequestProcessing(SocketServer.scala:230)
+	... 39 more
+Caused by: org.apache.kafka.common.KafkaException: Socket server failed to bind to localhost:9092: Address already in use: bind.
+	at kafka.network.Acceptor.openServerSocket(SocketServer.scala:736)
+	at kafka.network.Acceptor.liftedTree1$1(SocketServer.scala:632)
+	... 48 more
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:565)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at kafka.network.Acceptor.openServerSocket(SocketServer.scala:731)
+	... 49 more
+
